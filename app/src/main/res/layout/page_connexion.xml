@@ -75,11 +75,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/connecter" />
+        app:layout_constraintTop_toBottomOf="@+id/inscrire" />
 
     <Button
-        android:id="@+id/connecter"
-        style="@android:style/Widget.DeviceDefault.Button.Colored"
+        android:id="@+id/inscrire"
+        style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="187dp"
         android:layout_height="73dp"
         android:layout_marginTop="36dp"
