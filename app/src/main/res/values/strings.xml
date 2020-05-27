@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Campagnon</string>
+    <string-array name="statut__arrays">
+        <item>Utilisateur</item>
+        <item>Producteur</item>
+    </string-array>
 </resources>
