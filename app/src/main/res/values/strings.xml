@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Campagnon</string>
+    <string name="idex">ex : BoB55</string>
+    <string name="mailex">ex : richard@campagnon.tk</string>
     <string-array name="statut__arrays">
         <item>Utilisateur</item>
         <item>Producteur</item>
