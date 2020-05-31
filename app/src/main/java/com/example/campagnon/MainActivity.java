@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final TextView textMdpOublie = (TextView) findViewById(R.id.mdpOublie);
+        textMdpOublie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Mdp_oublie.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
