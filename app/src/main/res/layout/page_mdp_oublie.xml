@@ -4,17 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="395dp"
-        android:layout_height="128dp"
+        android:layout_width="360dp"
+        android:layout_height="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/campagnon" />
+        app:srcCompat="@drawable/logo_campagnon" />
 
     <TextView
         android:id="@+id/textView5"
@@ -24,7 +25,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="196dp"
         android:text="Adresse mail :"
-        android:textSize="24sp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -36,6 +39,9 @@
         android:layout_marginLeft="60dp"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:textStyle="italic"
+        android:textColor="@android:color/darker_gray"
+        android:text="rememberme@help.fr"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
@@ -45,6 +51,8 @@
         android:layout_height="63dp"
         android:layout_marginTop="76dp"
         android:text="Envoyer"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_mdp_oublie" />

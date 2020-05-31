@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params){
             try {
                 final EditText textLogin = findViewById(R.id.id);
-                final EditText textMdp = findViewById(R.id.mdp);
+                final EditText textMdp = findViewById(R.id.mdp1);
                 RequestBody formBody = new FormBody.Builder()
                         .add("login", textLogin.getText().toString())
                         .add("mdp", textMdp.getText().toString())
