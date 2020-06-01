@@ -33,9 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Statut :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:layout_width="match_parent"
@@ -65,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Identifiant :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -84,9 +84,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Adresse mail :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/email"
@@ -103,9 +103,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Téléphone :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/tel"
@@ -122,9 +122,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Mot de passe :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/mdpInscription1"
@@ -141,9 +141,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Vérification mot de passe :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/mdpInscription2"
@@ -160,9 +160,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Adresse :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/adresse"
@@ -179,9 +179,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ville :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/ville"
@@ -198,9 +198,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Code postal :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/code_postal"
@@ -217,9 +217,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Moyen de paiement :"
-                android:textColor="@android:color/black"
+                android:textColor="#BD781E"
                 android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <CheckBox
                 android:id="@+id/checkBox"
