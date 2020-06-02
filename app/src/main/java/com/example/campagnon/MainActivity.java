@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        final Button buttonConnection = (Button) findViewById(R.id.connecter);
+        buttonConnection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BackTaskAuthentification().execute();
+
+            }
+        });
     }
 
 
@@ -59,10 +69,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params){
             try {
-                final EditText textLogin = findViewById(R.id.id);
-                final EditText textMdp = findViewById(R.id.mdpInscription1);
+                final EditText textLogin = findViewById(R.id.idConnect);
+                final EditText textMdp = findViewById(R.id.mdpConnect);
                 RequestBody formBody = new FormBody.Builder()
-                        .add("login", textLogin.getText().toString())
+                        .add("id", textLogin.getText().toString())
                         .add("mdp", textMdp.getText().toString())
                         .build();
                 Request request = new Request.Builder()
@@ -73,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 responseStr = response.body().string();
             }
             catch (Exception e) {
-                Log.d("Test", "Erreur de connexion !!!!");
+                Log.d("Test", "Erreur de connexion 1 !!!!");
             }
             return null;
         }
@@ -82,12 +92,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (responseStr.compareTo("false") != 0) {
                 try {
-                    JSONObject log = new JSONObject(responseStr);
-                    Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                    intent.putExtra("log", log.toString());
+                    //JSONObject log = new JSONObject(responseStr);
+                    Intent intent = new Intent(MainActivity.this, AccueilPrincipal.class);
+                    //intent.putExtra("log", log.toString());
                     startActivity(intent);
-                } catch (JSONException e) {
-                    Toast.makeText(MainActivity.this, "Erreur de connexion !!!!!",
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, "Erreur de connexion 2!!!!!",
                             Toast.LENGTH_SHORT).show();
                 }
             } else {

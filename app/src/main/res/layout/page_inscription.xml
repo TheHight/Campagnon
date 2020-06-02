@@ -38,6 +38,7 @@
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/radioGroupStatut"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
@@ -61,6 +62,27 @@
             </RadioGroup>
 
             <TextView
+                android:id="@+id/textViewN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nom entreprise :"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/nomEntreprise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/idex"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +92,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/id"
+                android:id="@+id/idInscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"

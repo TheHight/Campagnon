@@ -34,10 +34,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id" />
+        app:layout_constraintTop_toBottomOf="@+id/idConnect" />
 
     <EditText
-        android:id="@+id/mdpInscription1"
+        android:id="@+id/mdpConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/id"
+        android:id="@+id/idConnect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.253"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mdpInscription1" />
+        app:layout_constraintTop_toBottomOf="@+id/mdpConnect" />
 
     <TextView
         android:id="@+id/nouveauUtilisateur"
@@ -88,10 +88,10 @@
         app:layout_constraintStart_toStartOf="parent"
         android:onClick="onClick"
         android:clickable="true"
-        app:layout_constraintTop_toBottomOf="@+id/inscrire" />
+        app:layout_constraintTop_toBottomOf="@+id/connecter" />
 
     <Button
-        android:id="@+id/inscrire"
+        android:id="@+id/connecter"
         style="@android:style/Widget.DeviceDefault.Button.Borderless"
         android:layout_width="187dp"
         android:layout_height="73dp"
