@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +66,23 @@ public class Inscription extends AppCompatActivity {
 
             }
         });
+        final RadioGroup Radio = (RadioGroup) findViewById(R.id.radioGroupStatut);
+        Radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                final RadioButton radioConso = (RadioButton) findViewById(R.id.radioButton4);
+                final TextView textNom = (TextView) findViewById(R.id.textViewN);
+                final EditText NomEntre = (EditText) findViewById(R.id.nomEntreprise);
+                if(radioConso.isChecked()){
+                    textNom.setVisibility(View.VISIBLE);
+                    NomEntre.setVisibility(View.VISIBLE);
+                }else{
+                    textNom.setVisibility(View.GONE);
+                    NomEntre.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
 
@@ -86,6 +105,7 @@ public class Inscription extends AppCompatActivity {
                 final EditText textVille = findViewById(R.id.ville);
                 final EditText textAdresse = findViewById(R.id.adresse);
                 final EditText textMail = findViewById(R.id.email);
+                final EditText nomEntreprise = findViewById(R.id.nomEntreprise);
                 final RadioButton radioUtil = findViewById(R.id.radioButton3);
                 String statut = "Producteur";
                 if (radioUtil.isChecked()) {
@@ -101,6 +121,7 @@ public class Inscription extends AppCompatActivity {
                         .add("tel", textTel.getText().toString())
                         .add("mdp", textMdp.getText().toString())
                         .add("statut", statut)
+                        .add("nomEntreprise", nomEntreprise.getText().toString())
                         .build();
                 Request request = new Request.Builder()
                         .url("http://campagnon.tk/inscription.php")
