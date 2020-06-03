@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <Button
+        android:id="@+id/enregistrer4"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Un problème
+        avec ma commande"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="411dp" />
+
+    <Button
+        android:id="@+id/enregistrer3"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:textStyle="bold"
+        android:text="Mes
+        Producteurs"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="235dp" />
+
+    <Button
+        android:id="@+id/enregistrer2"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Autour de
+        chez moi"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="235dp" />
 
     <Button
         android:id="@+id/enregistrer"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Panier et historique"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="411dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="169dp"
-        tools:layout_editor_absoluteY="298dp" />
+        app:srcCompat="@drawable/logo_campagnon"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-92dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
