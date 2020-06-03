@@ -16,6 +16,7 @@
         avec ma commande"
         android:textStyle="bold"
         android:textAllCaps="true"
+        android:textSize="16sp"
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="232dp"
         tools:layout_editor_absoluteY="411dp" />
@@ -28,6 +29,7 @@
         android:textStyle="bold"
         android:text="Mes
         Producteurs"
+        android:textSize="16sp"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="40dp"
@@ -38,8 +40,8 @@
         android:layout_width="145dp"
         android:layout_height="130dp"
         android:background="@drawable/custom_button"
-        android:text="Autour de
-        chez moi"
+        android:text="Autour de        chez moi"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
@@ -54,6 +56,7 @@
         android:text="Panier et historique"
         android:textStyle="bold"
         android:textAllCaps="true"
+        android:textSize="16sp"
         android:textColor="@android:color/black"
         tools:layout_editor_absoluteX="40dp"
         tools:layout_editor_absoluteY="411dp" />
