@@ -6,6 +6,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -13,28 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -45,7 +24,6 @@ import okhttp3.Response;
 public class Inscription extends AppCompatActivity {
     String responseStr;
     OkHttpClient client = new OkHttpClient();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +37,7 @@ public class Inscription extends AppCompatActivity {
                 if(textMdp.getText().toString().equals(textMdp2.getText().toString())){
 
                     new BackTaskInscription().execute();
+
                 }else{
                     Toast.makeText(Inscription.this, "Les deux mots de passe ne correspondent pas ",
                             Toast.LENGTH_SHORT).show();
@@ -112,7 +91,6 @@ public class Inscription extends AppCompatActivity {
                     statut = "Consommateur";
                 }
                 RequestBody formBody = new FormBody.Builder()
-                        .add("login", textLogin.getText().toString())
                         .add("id", textLogin.getText().toString())
                         .add("email", textMail.getText().toString())
                         .add("adresse", textAdresse.getText().toString())
@@ -139,15 +117,75 @@ public class Inscription extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
-                    finish();
 
-                } catch (Exception e) {
-                    Toast.makeText(Inscription.this, "Erreur de connexion !!!!!",
+                if(!responseStr.equals("false")){
+                    final CheckBox Carte = (CheckBox) findViewById(R.id.checkBoxCB);
+                    if(Carte.isChecked()){
+
+                        new BackTaskAjoutType(Carte.getText().toString()).execute();
+                    }
+                    final CheckBox Espece = (CheckBox) findViewById(R.id.checkBoxEspece);
+                    if(Espece.isChecked()){
+                        new BackTaskAjoutType(Espece.getText().toString()).execute();
+                    }
+
+                    finish();
+                }else{
+                    Toast.makeText(Inscription.this, "Cet identifiant existe déjà !",
                             Toast.LENGTH_SHORT).show();
                 }
+            } catch (Exception e) {
+                Toast.makeText(Inscription.this, "Erreur de connexion !!!!!",
+                        Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
 
 
+
+    private class BackTaskAjoutType extends AsyncTask<Void, Void, Void> {
+
+        private String typ;
+        public BackTaskAjoutType(String type) {
+            super();
+            typ = type;
+        }
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+                final EditText textLogin = findViewById(R.id.idInscription);
+
+                RequestBody formBody = new FormBody.Builder()
+                        .add("id", textLogin.getText().toString())
+                        .add("type", typ)
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/ajoutPayement.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
+            }
+            catch (Exception e) {
+                Log.d("Test", e.getMessage());
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+            try {
+
+            } catch (Exception e) {
+                Toast.makeText(Inscription.this, "Erreur de connexion !!!!!",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 }

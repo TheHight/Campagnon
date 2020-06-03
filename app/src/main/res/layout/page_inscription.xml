@@ -244,13 +244,13 @@
                 android:textStyle="bold" />
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBoxCB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Carte Bancaire" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBoxEspece"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Espèces" />
