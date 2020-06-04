@@ -120,7 +120,7 @@ public class Modification extends AppCompatActivity {
                         .add("nomEntreprise", nomEntreprise.getText().toString())
                         .build();
                 Request request = new Request.Builder()
-                        .url("http://campagnon.tk/inscription.php")
+                        .url("http://campagnon.tk/mettreajourprofil.php")
                         .post(formBody)
                         .build();
                 Response response = client.newCall(request).execute();
@@ -198,7 +198,18 @@ public class Modification extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
+                if (responseStr.compareTo("false") != 0) {
+                    try {
+                        log = new JSONObject(responseStr);
+                        finish();
+                    } catch (Exception e) {
+                        Toast.makeText(Modification.this, "Erreur de connexion !!!!!",
+                                Toast.LENGTH_SHORT).show();
+                    }
 
+                } else {
+                    Toast.makeText(Modification.this, "Le mot de passe n'est pas valide !", Toast.LENGTH_SHORT).show();
+                }
             } catch (Exception e) {
                 Toast.makeText(Modification.this, "Erreur de connexion !!!!!",
                         Toast.LENGTH_SHORT).show();
