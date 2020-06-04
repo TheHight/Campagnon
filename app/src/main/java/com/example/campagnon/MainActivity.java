@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import okhttp3.FormBody;
@@ -92,10 +91,17 @@ public class MainActivity extends AppCompatActivity {
 
             if (responseStr.compareTo("false") != 0) {
                 try {
-                    //JSONObject log = new JSONObject(responseStr);
-                    Intent intent = new Intent(MainActivity.this, AccueilPrincipal.class);
-                    //intent.putExtra("log", log.toString());
-                    startActivity(intent);
+                    JSONObject log = new JSONObject(responseStr);
+                    if(log.getString("statut").toString().equals("Consommateur")){
+                        Intent intent = new Intent(MainActivity.this, AccueilPrincipalConso.class);
+                        intent.putExtra("log", log.toString());
+                        startActivity(intent);
+                    }else{
+                        Intent intent = new Intent(MainActivity.this, AccueilPrincipalProd.class);
+                        intent.putExtra("log", log.toString());
+                        startActivity(intent);
+                    }
+
                 } catch (Exception e) {
                     Toast.makeText(MainActivity.this, "Erreur de connexion 2!!!!!",
                             Toast.LENGTH_SHORT).show();

@@ -29,7 +29,7 @@
                 app:srcCompat="@drawable/logo_campagnon" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/statutViewText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Statut :"
@@ -256,7 +256,7 @@
                 android:text="Espèces" />
 
             <Button
-                android:id="@+id/interface_conso_3"
+                android:id="@+id/inscription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Finaliser Inscription"

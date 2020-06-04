@@ -14,20 +14,70 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class Inscription extends AppCompatActivity {
+public class Modification extends AppCompatActivity {
     String responseStr;
+    EditText textMdp;
+    EditText textMdp2;
+    EditText textLogin;
+    EditText textTel;
+    EditText textCp;
+    EditText textVille;
+    EditText textAdresse;
+    EditText textMail;
+    EditText nomEntreprise;
+
     OkHttpClient client = new OkHttpClient();
+    JSONObject log;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_inscription);
+        textMdp = findViewById(R.id.mdpInscription1);
+        textMdp2 = findViewById(R.id.mdpInscription2);
+        textLogin = findViewById(R.id.idInscription);
+
+        textLogin.setFocusable(false);
+        textTel = findViewById(R.id.tel);
+        textCp = findViewById(R.id.code_postal);
+        textVille = findViewById(R.id.ville);
+        textAdresse = findViewById(R.id.adresse);
+        textMail = findViewById(R.id.email);
+        nomEntreprise = findViewById(R.id.nomEntreprise);
+        try {
+            log = new JSONObject(getIntent().getStringExtra("log").toString());
+            textLogin.setText(log.getString("identifiant").toString());
+            textLogin.setFocusable(false);
+            textMail.setText(log.getString("email").toString());
+            textTel.setText(log.getString("tel").toString());
+            textCp.setText(log.getString("cp").toString());
+            textVille.setText(log.getString("ville").toString());
+            textAdresse.setText(log.getString("adresse").toString());
+            nomEntreprise.setText(log.getString("nomEntreprise").toString());
+            final TextView statut = (TextView) findViewById(R.id.statutViewText);
+            if(log.getString("statut").toString().equals("Producteur")){
+                nomEntreprise.setVisibility(View.VISIBLE);
+
+                statut.setText("Nom de l'entreprise :");
+            }else{
+                statut.setVisibility(View.GONE);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        final RadioGroup Radio = (RadioGroup) findViewById(R.id.radioGroupStatut);
+        Radio.setVisibility(View.GONE);
         final Button enregister = (Button) findViewById(R.id.inscription);
+        enregister.setText("Enregistrer");
         enregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,37 +85,20 @@ public class Inscription extends AppCompatActivity {
                 final EditText textMdp2 = findViewById(R.id.mdpInscription2);
                 if(textMdp.getText().toString().equals(textMdp2.getText().toString())){
 
-                    new BackTaskInscription().execute();
+                    new BackTaskEnregistrement().execute();
 
                 }else{
-                    Toast.makeText(Inscription.this, "Les deux mots de passe ne correspondent pas ",
+                    Toast.makeText(Modification.this, "Les deux mots de passe ne correspondent pas ",
                             Toast.LENGTH_SHORT).show();
                 }
 
-            }
-        });
-        final RadioGroup Radio = (RadioGroup) findViewById(R.id.radioGroupStatut);
-        Radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                final RadioButton radioConso = (RadioButton) findViewById(R.id.radioButton4);
-                final TextView textNom = (TextView) findViewById(R.id.textViewN);
-                final EditText NomEntre = (EditText) findViewById(R.id.nomEntreprise);
-                if(radioConso.isChecked()){
-                    textNom.setVisibility(View.VISIBLE);
-                    NomEntre.setVisibility(View.VISIBLE);
-                }else{
-                    textNom.setVisibility(View.GONE);
-                    NomEntre.setVisibility(View.GONE);
-                }
             }
         });
     }
 
 
 
-    private class BackTaskInscription extends AsyncTask<Void, Void, Void> {
+    private class BackTaskEnregistrement extends AsyncTask<Void, Void, Void> {
 
 
         @Override
@@ -75,20 +108,7 @@ public class Inscription extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params){
             try {
-                final EditText textMdp = findViewById(R.id.mdpInscription1);
-                final EditText textMdp2 = findViewById(R.id.mdpInscription2);
-                final EditText textLogin = findViewById(R.id.idInscription);
-                final EditText textTel = findViewById(R.id.tel);
-                final EditText textCp = findViewById(R.id.code_postal);
-                final EditText textVille = findViewById(R.id.ville);
-                final EditText textAdresse = findViewById(R.id.adresse);
-                final EditText textMail = findViewById(R.id.email);
-                final EditText nomEntreprise = findViewById(R.id.nomEntreprise);
-                final RadioButton radioUtil = findViewById(R.id.radioButton3);
-                String statut = "Producteur";
-                if (radioUtil.isChecked()) {
-                    statut = "Consommateur";
-                }
+
                 RequestBody formBody = new FormBody.Builder()
                         .add("id", textLogin.getText().toString())
                         .add("email", textMail.getText().toString())
@@ -97,7 +117,6 @@ public class Inscription extends AppCompatActivity {
                         .add("cp", textCp.getText().toString())
                         .add("tel", textTel.getText().toString())
                         .add("mdp", textMdp.getText().toString())
-                        .add("statut", statut)
                         .add("nomEntreprise", nomEntreprise.getText().toString())
                         .build();
                 Request request = new Request.Builder()
@@ -130,11 +149,11 @@ public class Inscription extends AppCompatActivity {
 
                     finish();
                 }else{
-                    Toast.makeText(Inscription.this, "Cet identifiant existe déjà !",
+                    Toast.makeText(Modification.this, "Cet identifiant existe déjà !",
                             Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
-                Toast.makeText(Inscription.this, "Erreur de connexion !!!!!",
+                Toast.makeText(Modification.this, "Erreur de connexion !!!!!",
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -181,7 +200,7 @@ public class Inscription extends AppCompatActivity {
             try {
 
             } catch (Exception e) {
-                Toast.makeText(Inscription.this, "Erreur de connexion !!!!!",
+                Toast.makeText(Modification.this, "Erreur de connexion !!!!!",
                         Toast.LENGTH_SHORT).show();
             }
         }
