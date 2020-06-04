@@ -5,67 +5,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:ignore="ExtraText">
 
     <Button
-        android:id="@+id/enregistrer4"
+        android:id="@+id/interface_conso_4"
         android:layout_width="145dp"
         android:layout_height="130dp"
         android:background="@drawable/custom_button"
         android:text="Un problème
         avec ma commande"
-        android:textStyle="bold"
         android:textAllCaps="true"
-        android:textSize="16sp"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="232dp"
-        tools:layout_editor_absoluteY="411dp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
 
     <Button
-        android:id="@+id/enregistrer3"
+        android:id="@+id/interface_conso_1"
         android:layout_width="145dp"
         android:layout_height="130dp"
         android:background="@drawable/custom_button"
-        android:textStyle="bold"
         android:text="Mes
         Producteurs"
-        android:textSize="16sp"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="235dp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
 
     <Button
-        android:id="@+id/enregistrer2"
+        android:id="@+id/interface_conso_2"
         android:layout_width="145dp"
         android:layout_height="130dp"
         android:background="@drawable/custom_button"
         android:text="Autour de        chez moi"
-        android:textSize="16sp"
-        android:textStyle="bold"
         android:textAllCaps="true"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="232dp"
-        tools:layout_editor_absoluteY="235dp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
 
     <Button
-        android:id="@+id/enregistrer"
+        android:id="@+id/interface_conso_3"
         android:layout_width="145dp"
         android:layout_height="130dp"
         android:background="@drawable/custom_button"
         android:text="Panier et historique"
-        android:textStyle="bold"
         android:textAllCaps="true"
-        android:textSize="16sp"
         android:textColor="@android:color/black"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="411dp" />
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="387dp"
-        android:layout_height="310dp"
-        app:srcCompat="@drawable/logo_campagnon"
-        tools:layout_editor_absoluteX="12dp"
-        tools:layout_editor_absoluteY="-88dp" />
+        android:layout_width="326dp"
+        android:layout_height="121dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.001"
+        app:srcCompat="@drawable/logo_campagnon" />
+
+    <ImageButton
+        android:id="@+id/profil_conso_access"
+        android:layout_width="79dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.039"
+        app:srcCompat="@drawable/profile_picture" />
+
+    <TextView
+        android:id="@+id/display_nom_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profil_conso_access" />
+
+
+
+    <![CDATA[
+    @drawable/profile_picture"
+        tools:layout_editor_absoluteX="320dp"
+        tools:layout_editor_absoluteY="27dp" />
+]]>
 </androidx.constraintlayout.widget.ConstraintLayout>

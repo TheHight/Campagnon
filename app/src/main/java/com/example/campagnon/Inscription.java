@@ -2,7 +2,6 @@ package com.example.campagnon;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -28,7 +27,7 @@ public class Inscription extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_inscription);
-        final Button enregister = (Button) findViewById(R.id.enregistrer);
+        final Button enregister = (Button) findViewById(R.id.interface_conso_3);
         enregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
