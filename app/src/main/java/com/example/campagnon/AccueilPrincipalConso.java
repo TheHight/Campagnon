@@ -3,6 +3,7 @@ package com.example.campagnon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,15 @@ public class AccueilPrincipalConso extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccueilPrincipalConso.this, Modification.class);
+                intent.putExtra("log", log.toString());
+                startActivity(intent);
+            }
+        });
+        final Button buttonProducteur = (Button) findViewById(R.id.interface_conso_1);
+        buttonProducteur.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccueilPrincipalConso.this, MesProducteurs.class);
                 intent.putExtra("log", log.toString());
                 startActivity(intent);
             }

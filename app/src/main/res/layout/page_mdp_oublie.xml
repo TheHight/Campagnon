@@ -50,6 +50,7 @@
         android:layout_width="161dp"
         android:layout_height="63dp"
         android:layout_marginTop="76dp"
+        android:background="@drawable/custom_button"
         android:text="Envoyer"
         android:textSize="18sp"
         android:textColor="@android:color/black"
