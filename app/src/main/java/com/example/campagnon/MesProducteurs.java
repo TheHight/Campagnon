@@ -71,8 +71,6 @@ public class MesProducteurs extends AppCompatActivity {
                 intent.putExtra("Prod", monUser.getListUserProdClient().get(position).getIdentifiant());
                 intent.putExtra("identifiant", identifiant.toString());
                 startActivity(intent);
-
-                startActivity(intent);
             }
         });
     }
