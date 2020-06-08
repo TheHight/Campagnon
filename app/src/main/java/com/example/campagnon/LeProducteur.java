@@ -5,26 +5,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campagnon.Class.LesUsers;
+import com.example.campagnon.Class.User;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LeProducteur extends AppCompatActivity {
-    JSONObject log;
-    JSONObject Prod;
+    String identifiantConso;
+    String identifiantProd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conso_fiche_producteur);
-        try {
-            log = new JSONObject(getIntent().getStringExtra("log"));
-            Prod = new JSONObject(getIntent().getStringExtra("Prod"));
-            TextView nomEntreprise = (TextView) findViewById(R.id.display_nom_prod);
-            nomEntreprise.setText(Prod.getString("nomEntreprise"));
-            TextView adresse = (TextView) findViewById(R.id.display_adresseprod_ficheprod);
-            adresse.setText(Prod.getString("adresse"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        identifiantConso = getIntent().getStringExtra("identifiant");
+        identifiantProd = getIntent().getStringExtra("Prod");
+        User monProd = LesUsers.getUserID(identifiantProd);
+        TextView nomEntreprise = (TextView) findViewById(R.id.display_nom_prod);
+        nomEntreprise.setText(monProd.getNomEntreprise());
+        TextView adresse = (TextView) findViewById(R.id.display_adresseprod_ficheprod);
+        adresse.setText(monProd.getAdresse());
     }
 }

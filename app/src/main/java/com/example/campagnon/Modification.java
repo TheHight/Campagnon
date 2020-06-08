@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campagnon.Class.LesUsers;
+import com.example.campagnon.Class.User;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,9 +37,9 @@ public class Modification extends AppCompatActivity {
     EditText textAdresse;
     EditText textMail;
     EditText nomEntreprise;
-
+    User monUser;
     OkHttpClient client = new OkHttpClient();
-    JSONObject log;
+    String identifiant;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,6 @@ public class Modification extends AppCompatActivity {
         textMdp = findViewById(R.id.mdpInscription1);
         textMdp2 = findViewById(R.id.mdpInscription2);
         textLogin = findViewById(R.id.idInscription);
-
         textLogin.setFocusable(false);
         textTel = findViewById(R.id.tel);
         textCp = findViewById(R.id.code_postal);
@@ -52,26 +54,27 @@ public class Modification extends AppCompatActivity {
         textAdresse = findViewById(R.id.adresse);
         textMail = findViewById(R.id.email);
         nomEntreprise = findViewById(R.id.nomEntreprise);
-        try {
-            log = new JSONObject(getIntent().getStringExtra("log").toString());
-            textLogin.setText(log.getString("identifiant").toString());
-            textLogin.setFocusable(false);
-            textMail.setText(log.getString("email").toString());
-            textTel.setText(log.getString("tel").toString());
-            textCp.setText(log.getString("cp").toString());
-            textVille.setText(log.getString("ville").toString());
-            textAdresse.setText(log.getString("adresse").toString());
-            nomEntreprise.setText(log.getString("nomEntreprise").toString());
-            final TextView statut = (TextView) findViewById(R.id.statutViewText);
-            if(log.getString("statut").toString().equals("Producteur")){
-                nomEntreprise.setVisibility(View.VISIBLE);
 
-                statut.setText("Nom de l'entreprise :");
-            }else{
-                statut.setVisibility(View.GONE);
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+
+        identifiant = getIntent().getStringExtra("identifiant");
+        monUser = LesUsers.getUserID(identifiant);
+        textLogin.setText(monUser.getIdentifiant());
+        textLogin.setFocusable(false);
+        textMail.setText(monUser.getEmail());
+        textTel.setText(monUser.getTel());
+        textCp.setText(monUser.getCode_postal());
+        textVille.setText(monUser.getVille());
+        textAdresse.setText(monUser.getAdresse());
+        nomEntreprise.setText(monUser.getNomEntreprise());
+
+
+        final TextView statut = (TextView) findViewById(R.id.statutViewText);
+        if (monUser.getStatut().equals("Producteur")) {
+            nomEntreprise.setVisibility(View.VISIBLE);
+
+            statut.setText("Nom de l'entreprise :");
+        } else {
+            statut.setVisibility(View.GONE);
         }
 
         final RadioGroup Radio = (RadioGroup) findViewById(R.id.radioGroupStatut);
@@ -83,11 +86,11 @@ public class Modification extends AppCompatActivity {
             public void onClick(View v) {
                 final EditText textMdp = findViewById(R.id.mdpInscription1);
                 final EditText textMdp2 = findViewById(R.id.mdpInscription2);
-                if(textMdp.getText().toString().equals(textMdp2.getText().toString())){
+                if (textMdp.getText().toString().equals(textMdp2.getText().toString())) {
 
                     new BackTaskEnregistrement().execute();
 
-                }else{
+                } else {
                     Toast.makeText(Modification.this, "Les deux mots de passe ne correspondent pas ",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -200,7 +203,13 @@ public class Modification extends AppCompatActivity {
             try {
                 if (responseStr.compareTo("false") != 0) {
                     try {
-                        log = new JSONObject(responseStr);
+
+                        monUser.setEmail(textLogin.getText().toString());
+                        monUser.setTel(textTel.getText().toString());
+                        monUser.setCode_postal(textCp.getText().toString());
+                        monUser.setVille(textVille.getText().toString());
+                        monUser.setAdresse(textAdresse.getText().toString());
+                        monUser.setNomEntreprise(nomEntreprise.getText().toString());
                         finish();
                     } catch (Exception e) {
                         Toast.makeText(Modification.this, "Erreur de connexion !!!!!",

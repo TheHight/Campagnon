@@ -12,6 +12,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campagnon.Class.LesUsers;
+import com.example.campagnon.Class.User;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import okhttp3.FormBody;
@@ -57,6 +61,57 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private class BackTaskRecupererUsers extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+            LesUsers.clearListe();
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+
+                RequestBody formBody = new FormBody.Builder()
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/recupererUser.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
+            }
+            catch (Exception e) {
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+            try {
+                if(!responseStr.equals("false")){
+
+                    JSONArray array = new JSONArray(responseStr);
+                    for (int i = 0; i < array.length(); i++){
+                        User newUser = new User();
+                        JSONObject row = array.getJSONObject(i);
+                        newUser.setIdentifiant(row.getString("identifiant"));
+                        newUser.setAdresse(row.getString("adresse"));
+                        newUser.setCode_postal(row.getString("cp"));
+                        newUser.setStatut(row.getString("statut"));
+                        newUser.setVille(row.getString("ville"));
+                        newUser.setEmail(row.getString("email"));
+                        newUser.setTel(row.getString("tel"));
+                        newUser.setNomEntreprise(row.getString("nomEntreprise"));
+                        LesUsers.ajouterUser(newUser);
+                    }
+                }
+            } catch (Exception e) {
+
+            }
+        }
+
+    }
 
     private class BackTaskAuthentification extends AsyncTask<Void, Void, Void> {
 
@@ -91,14 +146,15 @@ public class MainActivity extends AppCompatActivity {
 
             if (responseStr.compareTo("false") != 0) {
                 try {
+                    new BackTaskRecupererUsers().execute();
                     JSONObject log = new JSONObject(responseStr);
                     if(log.getString("statut").toString().equals("Consommateur")){
                         Intent intent = new Intent(MainActivity.this, AccueilPrincipalConso.class);
-                        intent.putExtra("log", log.toString());
+                        intent.putExtra("identifiant", log.getString("identifiant"));
                         startActivity(intent);
                     }else{
                         Intent intent = new Intent(MainActivity.this, AccueilPrincipalProd.class);
-                        intent.putExtra("log", log.toString());
+                        intent.putExtra("identifiant", log.getString("identifiant"));
                         startActivity(intent);
                     }
 

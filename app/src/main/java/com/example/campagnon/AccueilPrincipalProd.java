@@ -12,25 +12,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AccueilPrincipalProd extends AppCompatActivity {
-    JSONObject log;
+    String identifiant;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_accueil_prod);
-        try {
-            log = new JSONObject(getIntent().getStringExtra("log"));
-            final TextView textUser = (TextView) findViewById(R.id.display_nom_user);
-            textUser.setText(log.getString("identifiant"));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        identifiant = getIntent().getStringExtra("identifiant");
+        final TextView textUser = (TextView) findViewById(R.id.display_nom_user);
+        textUser.setText(identifiant);
         final ImageView imageProfil = (ImageView) findViewById(R.id.profil_conso_access);
         imageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AccueilPrincipalProd.this, Modification.class);
-                intent.putExtra("log", log.toString());
+                intent.putExtra("identifiant", identifiant);
                 startActivity(intent);
             }
         });
