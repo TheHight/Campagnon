@@ -2,10 +2,9 @@ package com.example.campagnon.Class;
 
 public class Produit {
 
-    private String fruit
-    private String legume
-    private String viande
-    private String poisson
-    private String laitage
-    private String oeufs
+    private String type_produit;
+    private String image;
+    private String nom_produit;
+    private String qté_produit;
+    private String prix_kg;
 }
