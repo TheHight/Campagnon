@@ -1,8 +1,12 @@
 package com.example.campagnon;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -30,6 +34,7 @@ public class MesProducteurs extends AppCompatActivity {
     String responseStr;
     OkHttpClient client = new OkHttpClient();
     JSONObject log;
+    JSONArray array;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +83,7 @@ public class MesProducteurs extends AppCompatActivity {
                 if(!responseStr.equals("false")){
                     int id;
                     String nom_entreprise;
-                    JSONArray array = new JSONArray(responseStr);
+                    array = new JSONArray(responseStr);
                     final ArrayList<HashMap<String,String>> listeProd = new  ArrayList<HashMap<String,String>>();
 
                     HashMap<String,String> item ;
@@ -97,13 +102,28 @@ public class MesProducteurs extends AppCompatActivity {
                     }
 
 
-                    ListView listViewCommande = (ListView) findViewById(R.id.list_producteur);
+                    ListView listViewProducteur = (ListView) findViewById(R.id.list_producteur);
 
                     SimpleAdapter adapter = new SimpleAdapter(MesProducteurs.this, listeProd, android.R.layout.simple_list_item_1,
 
                             new String[]{"ligne1"},new int[]{android.R.id.text1 , android.R.id.text2});
 
-                    listViewCommande.setAdapter(adapter);
+                    listViewProducteur.setAdapter(adapter);
+                    listViewProducteur.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            Intent intent = new Intent(MesProducteurs.this, LeProducteur.class);
+                            try {
+                                intent.putExtra("Prod", array.getJSONObject(position).toString());
+                                intent.putExtra("log", log.toString());
+                                startActivity(intent);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            startActivity(intent);
+                        }
+                    });
 
 
                 }else{

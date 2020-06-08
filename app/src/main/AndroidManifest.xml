@@ -24,6 +24,7 @@
         <activity android:name=".AccueilPrincipalProd" ></activity>
         <activity android:name=".Modification" ></activity>
         <activity android:name=".MesProducteurs" ></activity>
+        <activity android:name=".LeProducteur" ></activity>
     </application>
 
 </manifest>

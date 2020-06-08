@@ -18,15 +18,14 @@
         app:srcCompat="@drawable/logo_campagnon" />
 
     <TextView
-        android:id="@+id/display_nom_entreprise_ficheprod"
+        android:id="@+id/display_nom_prod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="27dp"
-        android:
-        android:text="display_nom_entreprise:"
-        android:textSize="19dp"
+        android:text="nom_entreprise"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/display_nom_entreprise_ficheprod"
+        app:layout_constraintTop_toBottomOf="@+id/display_nom_prod"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -65,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/display_nom_entreprise_ficheprod"
+        app:layout_constraintTop_toBottomOf="@+id/display_nom_prod"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -152,6 +151,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <GridView
+        android:id="@+id/gridviewProduit"
         android:layout_width="387dp"
         android:layout_height="376dp"
         android:numColumns="2"
