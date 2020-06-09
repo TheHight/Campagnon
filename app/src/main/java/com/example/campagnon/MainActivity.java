@@ -102,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                         newUser.setVille(row.getString("ville"));
                         newUser.setEmail(row.getString("email"));
                         newUser.setTel(row.getString("tel"));
+                        newUser.setX(row.getString("x"));
+                        newUser.setY(row.getString("y"));
                         newUser.setNomEntreprise(row.getString("nomEntreprise"));
                         LesUsers.ajouterUser(newUser);
                     }

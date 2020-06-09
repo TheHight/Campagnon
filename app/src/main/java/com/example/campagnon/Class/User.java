@@ -14,10 +14,28 @@ public class User {
     private String email;
     private String tel;
     private String nomEntreprise;
+    private String x;
+    private String y;
 
     public User() {
         mode_de_paiement = new ArrayList<String>();
         listUserProdClient = new ArrayList<User>();
+    }
+
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
     }
 
     public String getNomEntreprise() {

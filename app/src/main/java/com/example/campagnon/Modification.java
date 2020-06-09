@@ -17,8 +17,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.campagnon.Class.LesUsers;
 import com.example.campagnon.Class.User;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -112,6 +123,16 @@ public class Modification extends AppCompatActivity {
         protected Void doInBackground(Void... params){
             try {
 
+                String x="0";
+                String y="0";
+                try {
+                    URI uri = new URI("https://api-adresse.data.gouv.fr/search/?q="+textAdresse.getText().toString().replace(' ','+')+"+"+textVille.getText().toString()+"+"+textCp.getText().toString()+"&limit=1");
+                    JSONObject donne = new JSONObject(getHttpResponse(uri));
+                    x =donne.getJSONArray("features").getJSONObject(0).getJSONObject("properties").getString("x");
+                    y =donne.getJSONArray("features").getJSONObject(0).getJSONObject("properties").getString("y");
+                } catch (Exception e) {
+                    Toast.makeText(Modification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
                 RequestBody formBody = new FormBody.Builder()
                         .add("id", textLogin.getText().toString())
                         .add("email", textMail.getText().toString())
@@ -120,6 +141,8 @@ public class Modification extends AppCompatActivity {
                         .add("cp", textCp.getText().toString())
                         .add("tel", textTel.getText().toString())
                         .add("mdp", textMdp.getText().toString())
+                        .add("x", x)
+                        .add("y", y)
                         .add("nomEntreprise", nomEntreprise.getText().toString())
                         .build();
                 Request request = new Request.Builder()
@@ -138,25 +161,23 @@ public class Modification extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
-
-                if(!responseStr.equals("false")){
+                if(!responseStr.equals("false")) {
                     final CheckBox Carte = (CheckBox) findViewById(R.id.checkBoxCB);
-                    if(Carte.isChecked()){
+                    if (Carte.isChecked()) {
 
                         new BackTaskAjoutType(Carte.getText().toString()).execute();
                     }
                     final CheckBox Espece = (CheckBox) findViewById(R.id.checkBoxEspece);
-                    if(Espece.isChecked()){
+                    if (Espece.isChecked()) {
                         new BackTaskAjoutType(Espece.getText().toString()).execute();
                     }
-
-                    finish();
                 }else{
-                    Toast.makeText(Modification.this, "Cet identifiant existe déjà !",
+                    Toast.makeText(Modification.this, "Le mot de passe est incorrect",
                             Toast.LENGTH_SHORT).show();
                 }
-            } catch (Exception e) {
-                Toast.makeText(Modification.this, "Erreur de connexion !!!!!",
+                finish();
+            }catch (Exception e) {
+                Toast.makeText(Modification.this, e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         }
@@ -225,5 +246,31 @@ public class Modification extends AppCompatActivity {
             }
         }
 
+    }
+
+
+    public static String getHttpResponse(URI uri2) {
+        StringBuilder response = new StringBuilder();
+        try {
+            HttpGet get = new HttpGet();
+            get.setURI(uri2);
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpResponse httpResponse = httpClient.execute(get);
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                Log.d("[GET REQUEST]", "HTTP Get succeeded");
+
+                HttpEntity messageEntity = httpResponse.getEntity();
+                InputStream is = messageEntity.getContent();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+        } catch (Exception e) {
+            Log.e("[GET REQUEST]", e.getMessage());
+        }
+        Log.d("[GET REQUEST]", "Done with HTTP getting");
+        return response.toString();
     }
 }
