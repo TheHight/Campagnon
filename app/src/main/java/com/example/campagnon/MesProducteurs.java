@@ -52,15 +52,16 @@ public class MesProducteurs extends AppCompatActivity {
             item = new HashMap<String,String>();
 
             item.put("ligne1",unUser.getNomEntreprise());
-            //item.put("idCommande" , uneComm.getIdCommande());
 
+
+            item.put("ligne2" , String.valueOf(monUser.Distance(unUser))+"km");
             listeProd.add(item);
         }
         ListView listViewProducteur = (ListView) findViewById(R.id.list_producteur);
 
-        SimpleAdapter adapter = new SimpleAdapter(MesProducteurs.this, listeProd, android.R.layout.simple_list_item_1,
+        SimpleAdapter adapter = new SimpleAdapter(MesProducteurs.this, listeProd, android.R.layout.simple_list_item_2,
 
-                new String[]{"ligne1"},new int[]{android.R.id.text1 , android.R.id.text2});
+                new String[]{"ligne1","ligne2"},new int[]{android.R.id.text1 , android.R.id.text2});
 
         listViewProducteur.setAdapter(adapter);
         listViewProducteur.setOnItemClickListener(new AdapterView.OnItemClickListener(){

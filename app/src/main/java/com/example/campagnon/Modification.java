@@ -126,10 +126,10 @@ public class Modification extends AppCompatActivity {
                 String x="0";
                 String y="0";
                 try {
-                    URI uri = new URI("https://api-adresse.data.gouv.fr/search/?q="+textAdresse.getText().toString().replace(' ','+')+"+"+textVille.getText().toString()+"+"+textCp.getText().toString()+"&limit=1");
+                    URI uri = new URI("https://api-adresse.data.gouv.fr/search/?q="+textAdresse.getText().toString().replace(' ','+')+"+"+textVille.getText().toString().replace(' ','+')+"+"+textCp.getText().toString().replace(' ','+')+"&limit=1");
                     JSONObject donne = new JSONObject(getHttpResponse(uri));
-                    x =donne.getJSONArray("features").getJSONObject(0).getJSONObject("properties").getString("x");
-                    y =donne.getJSONArray("features").getJSONObject(0).getJSONObject("properties").getString("y");
+                    x =donne.getJSONArray("features").getJSONObject(0).getJSONObject("geometry").getJSONArray("coordinates").getString(0);
+                    y =donne.getJSONArray("features").getJSONObject(0).getJSONObject("geometry").getJSONArray("coordinates").getString(1);
                 } catch (Exception e) {
                     Toast.makeText(Modification.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -161,7 +161,7 @@ public class Modification extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
-                if(!responseStr.equals("false")) {
+                 if(!responseStr.equals("false")) {
                     final CheckBox Carte = (CheckBox) findViewById(R.id.checkBoxCB);
                     if (Carte.isChecked()) {
 
@@ -177,8 +177,7 @@ public class Modification extends AppCompatActivity {
                 }
                 finish();
             }catch (Exception e) {
-                Toast.makeText(Modification.this, e.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(Modification.this, e.getMessage(),Toast.LENGTH_SHORT).show();
             }
         }
 

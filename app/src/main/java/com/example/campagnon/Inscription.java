@@ -14,6 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URI;
+
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -89,6 +100,16 @@ public class Inscription extends AppCompatActivity {
                 if (radioUtil.isChecked()) {
                     statut = "Consommateur";
                 }
+                String x="0";
+                String y="0";
+                try {
+                    URI uri = new URI("https://api-adresse.data.gouv.fr/search/?q="+textAdresse.getText().toString().replace(' ','+')+"+"+textVille.getText().toString().replace(' ','+')+"+"+textCp.getText().toString().replace(' ','+')+"&limit=1");
+                    JSONObject donne = new JSONObject(getHttpResponse(uri));
+                    x =donne.getJSONArray("features").getJSONObject(0).getJSONObject("geometry").getJSONArray("coordinates").getString(0);
+                    y =donne.getJSONArray("features").getJSONObject(0).getJSONObject("geometry").getJSONArray("coordinates").getString(1);
+                } catch (Exception e) {
+                    Toast.makeText(Inscription.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
                 RequestBody formBody = new FormBody.Builder()
                         .add("id", textLogin.getText().toString())
                         .add("email", textMail.getText().toString())
@@ -98,6 +119,8 @@ public class Inscription extends AppCompatActivity {
                         .add("tel", textTel.getText().toString())
                         .add("mdp", textMdp.getText().toString())
                         .add("statut", statut)
+                        .add("x", x)
+                        .add("y", y)
                         .add("nomEntreprise", nomEntreprise.getText().toString())
                         .build();
                 Request request = new Request.Builder()
@@ -186,5 +209,29 @@ public class Inscription extends AppCompatActivity {
             }
         }
 
+    }
+    public static String getHttpResponse(URI uri2) {
+        StringBuilder response = new StringBuilder();
+        try {
+            HttpGet get = new HttpGet();
+            get.setURI(uri2);
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            HttpResponse httpResponse = httpClient.execute(get);
+            if (httpResponse.getStatusLine().getStatusCode() == 200) {
+                Log.d("[GET REQUEST]", "HTTP Get succeeded");
+
+                HttpEntity messageEntity = httpResponse.getEntity();
+                InputStream is = messageEntity.getContent();
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                while ((line = br.readLine()) != null) {
+                    response.append(line);
+                }
+            }
+        } catch (Exception e) {
+            Log.e("[GET REQUEST]", e.getMessage());
+        }
+        Log.d("[GET REQUEST]", "Done with HTTP getting");
+        return response.toString();
     }
 }

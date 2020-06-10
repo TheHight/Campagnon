@@ -21,6 +21,27 @@ public class User {
         mode_de_paiement = new ArrayList<String>();
         listUserProdClient = new ArrayList<User>();
     }
+    public double Distance(User autreUser) {
+        Double x1 = Double.parseDouble(this.getX());
+        Double x2 = Double.parseDouble(autreUser.getX());
+        Double y1 = Double.parseDouble(this.getY());
+        Double y2 = Double.parseDouble(autreUser.getY());
+        double R = 6371e3; // metres
+        double φ1 = x1 * Math.PI/180; // φ, λ in radians
+        double φ2 = x2 * Math.PI/180;
+        double Δφ = (x2-x1) * Math.PI/180;
+        double Δλ = (y2-y1) * Math.PI/180;
+
+        double a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                Math.cos(φ1) * Math.cos(φ2) *
+                        Math.sin(Δλ/2) * Math.sin(Δλ/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+
+        double d = R * c; // in kilometre
+        d =Math.round(d*1.2);
+        d =d/1000;
+        return d;
+    }
 
     public String getX() {
         return x;

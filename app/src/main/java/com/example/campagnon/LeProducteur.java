@@ -12,18 +12,21 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LeProducteur extends AppCompatActivity {
-    String identifiantConso;
-    String identifiantProd;
+    User monUser;
+    User leProd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.conso_fiche_producteur);
-        identifiantConso = getIntent().getStringExtra("identifiant");
-        identifiantProd = getIntent().getStringExtra("Prod");
-        User monProd = LesUsers.getUserID(identifiantProd);
+        String identifiantConso = getIntent().getStringExtra("identifiant");
+        String identifiantProd = getIntent().getStringExtra("Prod");
+        leProd = LesUsers.getUserID(identifiantProd);
+        monUser = LesUsers.getUserID(identifiantConso);
         TextView nomEntreprise = (TextView) findViewById(R.id.display_nom_prod);
-        nomEntreprise.setText(monProd.getNomEntreprise());
+        nomEntreprise.setText(leProd.getNomEntreprise());
         TextView adresse = (TextView) findViewById(R.id.display_adresseprod_ficheprod);
-        adresse.setText(monProd.getAdresse());
+        adresse.setText(leProd.getAdresse());
+        TextView distance = (TextView) findViewById(R.id.display_distance_ficheprod);
+        distance.setText(String.valueOf(monUser.Distance(leProd))+"km");
     }
 }

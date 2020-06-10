@@ -61,6 +61,15 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Button buttonMaps = (Button) findViewById(R.id.interface_conso_2);
+        buttonMaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccueilPrincipalConso.this, MapsActivity.class);
+                intent.putExtra("identifiant", identifiant);
+                startActivity(intent);
+            }
+        });
     }
 
     private class BackTaskRecupererMesProducteurs extends AsyncTask<Void, Void, Void> {
