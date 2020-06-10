@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.campagnon.Class.LesUsers;
+import com.example.campagnon.Class.Produit;
 import com.example.campagnon.Class.User;
 
 import org.json.JSONArray;
@@ -43,6 +44,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
         final TextView textUser = (TextView) findViewById(R.id.display_nom_user);
         textUser.setText(identifiant);
         new BackTaskRecupererMesProducteurs().execute();
+        new BackTaskRecupererLesProduit().execute();
         final ImageView imageProfil = (ImageView) findViewById(R.id.profil_conso_access);
         imageProfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +116,60 @@ public class AccueilPrincipalConso extends AppCompatActivity {
             } catch (Exception e) {
                 Toast.makeText(AccueilPrincipalConso.this, e.getMessage().toString(),
                         Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+
+
+    private class BackTaskRecupererLesProduit extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+
+                RequestBody formBody = new FormBody.Builder()
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/recupererProduit.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
+            }
+            catch (Exception e) {
+                Log.d("Test", e.getMessage());
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+            try {
+
+
+                if(!responseStr.equals("false")){
+                    JSONArray array = new JSONArray(responseStr);
+                    for (int i = 0; i < array.length(); i++){
+                        JSONObject row = array.getJSONObject(i);
+                        Produit leProduit = new Produit();
+                        //leProduit.setImage(row.getString("image"));
+                        leProduit.setNom_produit(row.getString("nom_produit"));
+                        leProduit.setPrix_kg(row.getString("prix_kg"));
+                        leProduit.setQté_produit(row.getString("qte_produit"));
+                        leProduit.setType_produit(row.getString("type_produit"));
+                        LesUsers.getUserID(row.getString("idProd")).addProduit(leProduit);
+                    }
+                }else{
+                }
+            } catch (Exception e) {
+                Toast.makeText(AccueilPrincipalConso.this, e.getMessage().toString(),Toast.LENGTH_SHORT).show();
             }
         }
 

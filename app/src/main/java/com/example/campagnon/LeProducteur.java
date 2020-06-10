@@ -7,16 +7,21 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campagnon.Class.CustomGridAdapter;
 import com.example.campagnon.Class.LesUsers;
+import com.example.campagnon.Class.Produit;
 import com.example.campagnon.Class.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -63,7 +68,13 @@ public class LeProducteur extends AppCompatActivity {
                 }
             }
         });
+
+
+        List<Produit> image_details = leProd.getListProduit();
+        final GridView gridView = (GridView) findViewById(R.id.gridviewProduit);
+        gridView.setAdapter(new CustomGridAdapter(this, image_details));
     }
+
 
 
     private class BackTaskAjouterFav extends AsyncTask<Void, Void, Void> {

@@ -1,5 +1,6 @@
 package com.example.campagnon.Class;
 
+
 public class Produit {
 
     private String type_produit;

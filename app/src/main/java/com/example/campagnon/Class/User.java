@@ -10,6 +10,7 @@ public class User {
     private String adresse;
     private ArrayList<String> mode_de_paiement;
     private ArrayList<User> listUserProdClient;
+    private ArrayList<Produit> listProduit;
     private String statut;
     private String email;
     private String tel;
@@ -20,6 +21,7 @@ public class User {
     public User() {
         mode_de_paiement = new ArrayList<String>();
         listUserProdClient = new ArrayList<User>();
+        listProduit = new ArrayList<Produit>();
     }
     public double Distance(User autreUser) {
         Double x1 = Double.parseDouble(this.getX());
@@ -148,6 +150,13 @@ public class User {
         listUserProdClient.remove(supprimeUser);
     }
 
+    public void addProduit(Produit newProduit) {
+        listProduit.add(newProduit);
+    }
+
+    public void suppProduit(Produit supprimeProduit) {
+        listProduit.remove(supprimeProduit);
+    }
     public Boolean verifierFavUser(User unUser){
         Boolean re = false;
         for(User unautreUser : listUserProdClient){
@@ -156,6 +165,14 @@ public class User {
             }
         }
         return re;
+    }
+
+    public ArrayList<Produit> getListProduit() {
+        return listProduit;
+    }
+
+    public void setListProduit(ArrayList<Produit> listProduit) {
+        this.listProduit = listProduit;
     }
 
     public boolean estConsommateur(){
