@@ -144,6 +144,20 @@ public class User {
         listUserProdClient.add(newUser);
     }
 
+    public void supUser(User supprimeUser) {
+        listUserProdClient.remove(supprimeUser);
+    }
+
+    public Boolean verifierFavUser(User unUser){
+        Boolean re = false;
+        for(User unautreUser : listUserProdClient){
+            if(unautreUser.equals(unUser)){
+                re = true;
+            }
+        }
+        return re;
+    }
+
     public boolean estConsommateur(){
         return (statut.equals("Consommateur"));
     }
