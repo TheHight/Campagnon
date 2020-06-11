@@ -125,8 +125,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                 }else{
                 }
             } catch (Exception e) {
-                Toast.makeText(AccueilPrincipalConso.this, responseStrCli,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilPrincipalConso.this, responseStrCli, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -172,6 +171,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                         Produit leProduit = new Produit();
                         //leProduit.setImage(row.getString("image"));
                         leProduit.setNom_produit(row.getString("nom_produit"));
+                        leProduit.setImage(row.getString("image"));
                         leProduit.setPrix_kg(row.getString("prix_kg"));
                         leProduit.setQté_produit(row.getString("qte_produit"));
                         leProduit.setType_produit(row.getString("type_produit"));

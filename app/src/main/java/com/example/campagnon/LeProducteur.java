@@ -50,6 +50,10 @@ public class LeProducteur extends AppCompatActivity {
         adresse.setText(leProd.getAdresse());
         TextView distance = (TextView) findViewById(R.id.display_distance_ficheprod);
         distance.setText(String.valueOf(monUser.Distance(leProd))+"km");
+
+        TextView type = (TextView) findViewById(R.id.display_produit_type_ficheprod);
+        type.setText(leProd.typeProduitVendu());
+
         final Button fav =(Button) findViewById(R.id.Favoris);
         if(monUser.verifierFavUser(leProd)){
             fav.setText("Enlever");

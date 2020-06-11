@@ -177,6 +177,16 @@ public class User {
         return re;
     }
 
+    public String typeProduitVendu(){
+        String type = " ";
+        for(Produit unProduit : listProduit){
+            if(!type.contains(unProduit.getType_produit())){
+                type += unProduit.getType_produit()+ " ";
+            }
+        }
+        return type;
+    }
+
     public ArrayList<Produit> getListProduit() {
         return listProduit;
     }

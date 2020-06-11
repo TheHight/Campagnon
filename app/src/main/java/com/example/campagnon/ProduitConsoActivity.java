@@ -27,5 +27,11 @@ public class ProduitConsoActivity extends AppCompatActivity {
         Picasso.with(this).load(leProduit.getImage()).into(monImage);
         TextView nom = (TextView) findViewById(R.id.textViewProduitt);
         nom.setText(leProduit.getNom_produit());
+
+        TextView prixkilo = (TextView) findViewById(R.id.display_prix_kilo_pageproduit);
+        prixkilo.setText(leProduit.getPrix_kg() +" €");
+
+        TextView typeProduit = (TextView) findViewById(R.id.display_type_produit_pageproduit);
+        prixkilo.setText(leProduit.getType_produit());
     }
 }
