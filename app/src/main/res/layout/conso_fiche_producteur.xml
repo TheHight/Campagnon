@@ -151,14 +151,16 @@
 
     <GridView
         android:id="@+id/gridviewProduit"
-        android:layout_width="387dp"
-        android:layout_height="376dp"
+        android:layout_width="394dp"
+        android:layout_height="316dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="8dp"
         android:numColumns="1"
         android:stretchMode="columnWidth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView29" >
+        app:layout_constraintTop_toBottomOf="@+id/textView29">
 
     </GridView>
 

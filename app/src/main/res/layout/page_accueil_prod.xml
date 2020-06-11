@@ -8,6 +8,74 @@
     android:background="@android:color/white"
     tools:ignore="ExtraText">
 
+    <Button
+        android:id="@+id/interface_prod_4"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Service client"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
+
+    <Button
+        android:id="@+id/interface_prod_3"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Commandes passées"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.683" />
+
+    <Button
+        android:id="@+id/interface_prod_2"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Commandes en attente"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.872"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
+
+    <Button
+        android:id="@+id/interface_prod_1"
+        android:layout_width="145dp"
+        android:layout_height="130dp"
+        android:background="@drawable/custom_button"
+        android:text="Mes produits"
+        android:textAllCaps="true"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.391" />
+
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="326dp"
