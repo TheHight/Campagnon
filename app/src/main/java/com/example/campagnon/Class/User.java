@@ -167,6 +167,16 @@ public class User {
         return re;
     }
 
+    public Produit chercherProduit(String nom){
+        Produit re = new Produit();
+        for(Produit unProduit : listProduit){
+            if(unProduit.getNom_produit().equals(nom)){
+                re = unProduit;
+            }
+        }
+        return re;
+    }
+
     public ArrayList<Produit> getListProduit() {
         return listProduit;
     }

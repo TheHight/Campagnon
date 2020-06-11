@@ -35,6 +35,7 @@ import okhttp3.Response;
 public class AccueilPrincipalConso extends AppCompatActivity {
     String identifiant;
     String responseStr;
+    String responseStrCli;
     OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +103,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                         .post(formBody)
                         .build();
                 Response response = client.newCall(request).execute();
-                responseStr = response.body().string();
+                responseStrCli = response.body().string();
             }
             catch (Exception e) {
                 Log.d("Test", e.getMessage());
@@ -114,16 +115,17 @@ public class AccueilPrincipalConso extends AppCompatActivity {
 
             try {
 
-                if(!responseStr.equals("false")){
-                    JSONArray array = new JSONArray(responseStr);
+                if(!responseStrCli.equals("false")){
+                    JSONArray array = new JSONArray(responseStrCli);
                     for (int i = 0; i < array.length(); i++){
                         JSONObject row = array.getJSONObject(i);
+                        responseStrCli =row.getString("identifiant");
                         LesUsers.getUserID(identifiant).addUser(LesUsers.getUserID(row.getString("identifiant")));
                     }
                 }else{
                 }
             } catch (Exception e) {
-                Toast.makeText(AccueilPrincipalConso.this, e.getMessage().toString(),
+                Toast.makeText(AccueilPrincipalConso.this, responseStrCli,
                         Toast.LENGTH_SHORT).show();
             }
         }
