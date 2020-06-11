@@ -49,6 +49,7 @@
         <activity android:name=".Modification" />
         <activity android:name=".MesProducteurs" />
         <activity android:name=".LeProducteur" />
+        <activity android:name=".ProduitConsoActivity" />
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.campagnon.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -63,8 +64,7 @@ public class CustomGridAdapter  extends BaseAdapter {
         holder.ProduitQdispo.setText("Quantité dispo : "+ produit.getQté_produit()+"KG");
 
         int imageId = this.getMipmapResIdByName(produit.getNom_produit());
-
-        holder.ProduitImageView.setImageBitmap(getBitmapfromUrl(produit.getImage()));
+        Picasso.with(context).load(produit.getImage()).into(holder.ProduitImageView);
         return convertView;
     }
 
@@ -85,24 +85,5 @@ public class CustomGridAdapter  extends BaseAdapter {
         TextView ProduitPrixKG;
     }
 
-    public Bitmap getBitmapfromUrl(String imageUrl)
-    {
-        try
-        {
-            URL url = new URL(imageUrl);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setDoInput(true);
-            connection.connect();
-            InputStream input = connection.getInputStream();
-            Bitmap bitmap = BitmapFactory.decodeStream(input);
-            return bitmap;
 
-        } catch (Exception e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-
-        }
-    }
 }

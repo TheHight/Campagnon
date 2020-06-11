@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="27dp"
         android:text="nom_entreprise"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -31,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/Favoris"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -169,7 +168,7 @@
         android:layout_height="46dp"
         android:layout_marginTop="6dp"
         android:background="@drawable/custom_button"
-        android:text="Ajouter à mes producteurs"
+        android:text="Ajouter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.902"
         app:layout_constraintStart_toStartOf="parent"

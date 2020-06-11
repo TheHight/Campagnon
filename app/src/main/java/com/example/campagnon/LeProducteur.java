@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -73,6 +74,22 @@ public class LeProducteur extends AppCompatActivity {
         List<Produit> image_details = leProd.getListProduit();
         final GridView gridView = (GridView) findViewById(R.id.gridviewProduit);
         gridView.setAdapter(new CustomGridAdapter(this, image_details));
+
+
+        // When the user clicks on the GridItem
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
+                Object o = gridView.getItemAtPosition(position);
+                Produit produit = (Produit) o;
+                Intent intent = new Intent(LeProducteur.this, ProduitConsoActivity.class);
+                intent.putExtra("identifiant", monUser.getIdentifiant());
+                intent.putExtra("leProduit", ((Produit) o).getNom_produit());
+                intent.putExtra("idProducteur", leProd.getIdentifiant());
+                startActivity(intent);
+            }
+        });
     }
 
 

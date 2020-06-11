@@ -1,6 +1,13 @@
 package com.example.campagnon.Class;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class Produit {
 
     private String type_produit;
@@ -11,6 +18,8 @@ public class Produit {
 
     public Produit() {
     }
+
+
 
     public String getType_produit() {
         return type_produit;
@@ -51,4 +60,6 @@ public class Produit {
     public void setPrix_kg(String prix_kg) {
         this.prix_kg = prix_kg;
     }
+
+
 }

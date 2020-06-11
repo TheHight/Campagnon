@@ -72,6 +72,15 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Button panier = (Button) findViewById(R.id.interface_conso_3);
+        panier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccueilPrincipalConso.this, Panier.class);
+                intent.putExtra("identifiant", identifiant);
+                startActivity(intent);
+            }
+        });
     }
 
     private class BackTaskRecupererMesProducteurs extends AsyncTask<Void, Void, Void> {
