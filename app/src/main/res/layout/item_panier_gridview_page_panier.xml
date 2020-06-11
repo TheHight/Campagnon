@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/textViewPrixKG3"
+        android:layout_width="171dp"
+        android:layout_height="25dp"
+        android:text="Prix :"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewQDispo3"
+        tools:layout_editor_absoluteY="64dp" />
+
+    <TextView
+        android:id="@+id/textViewQDispo3"
+        android:layout_width="171dp"
+        android:layout_height="26dp"
+        android:text="Quantité :"
+        android:textSize="17dp"
+        app:layout_constraintStart_toEndOf="@+id/product_picture_panier"
+        tools:layout_editor_absoluteY="38dp" />
+
+    <TextView
+        android:id="@+id/display_nom_produit_panier"
+        android:layout_width="177dp"
+        android:layout_height="22dp"
+        android:text="nom_produit"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/product_picture_panier"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <ImageView
+        android:id="@+id/product_picture_panier"
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/delete_product_panier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        app:layout_constraintStart_toEndOf="@+id/textViewQDispo3"
+        app:srcCompat="@android:drawable/ic_delete"
+        tools:layout_editor_absoluteY="30dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
