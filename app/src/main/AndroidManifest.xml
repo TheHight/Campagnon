@@ -50,6 +50,7 @@
         <activity android:name=".MesProducteurs" />
         <activity android:name=".LeProducteur" />
         <activity android:name=".ProduitConsoActivity" />
+        <activity android:name=".Panier" />
     </application>
 
 </manifest>
