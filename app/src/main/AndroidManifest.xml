@@ -51,6 +51,8 @@
         <activity android:name=".LeProducteur" />
         <activity android:name=".ProduitConsoActivity" />
         <activity android:name=".Panier" />
+        <activity android:name=".CommandesAttentesActivity"/>
+        <activity android:name=".MesProduitsActivity"/>
     </application>
 
 </manifest>

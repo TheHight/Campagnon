@@ -46,6 +46,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
         textUser.setText(identifiant);
         new BackTaskRecupererMesProducteurs().execute();
         new BackTaskRecupererLesProduit().execute();
+
         final ImageView imageProfil = (ImageView) findViewById(R.id.profil_conso_access);
         imageProfil.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -35,9 +35,10 @@
 
     <ListView
         android:id="@+id/listView_commandes_en_attentes"
-        android:layout_width="375dp"
-        android:layout_height="300dp"
+        android:layout_width="387dp"
+        android:layout_height="240dp"
         android:layout_marginTop="12dp"
+        android:layout_marginBottom="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,10 +82,12 @@
         android:text="Filtrer :"
         android:textSize="19dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+        app:layout_constraintTop_toBottomOf="@+id/textView40"
+        app:layout_constraintVertical_bias="0.044" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -93,9 +96,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView42"
-        app:layout_constraintTop_toBottomOf="@+id/display_nb_comm_tot" />
+        app:layout_constraintTop_toBottomOf="@+id/display_nb_comm_tot"
+        app:layout_constraintVertical_bias="0.051" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
