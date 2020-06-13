@@ -7,6 +7,20 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+    <GridView
+        android:id="@+id/gridviewProduitProd"
+        android:layout_width="391dp"
+        android:layout_height="535dp"
+        android:numColumns="1"
+        android:stretchMode="columnWidth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        app:layout_constraintVertical_bias="1.0">
+
+    </GridView>
+
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="360dp"
@@ -32,15 +46,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
-    <ListView
-        android:id="@+id/list_produits_ajoutés_prodsize"
-        android:layout_width="402dp"
-        android:layout_height="518dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <ImageButton
         android:id="@+id/add_product_button"

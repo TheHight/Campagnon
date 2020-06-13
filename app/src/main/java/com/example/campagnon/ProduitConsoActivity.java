@@ -32,6 +32,9 @@ public class ProduitConsoActivity extends AppCompatActivity {
         prixkilo.setText(leProduit.getPrix_kg() +" €");
 
         TextView typeProduit = (TextView) findViewById(R.id.display_type_produit_pageproduit);
-        prixkilo.setText(leProduit.getType_produit());
+        typeProduit.setText(leProduit.getType_produit());
+
+        TextView description = (TextView) findViewById(R.id.display_description_produit);
+        description.setText(leProduit.getDecription());
     }
 }

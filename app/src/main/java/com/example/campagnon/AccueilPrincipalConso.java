@@ -34,8 +34,9 @@ import okhttp3.Response;
 
 public class AccueilPrincipalConso extends AppCompatActivity {
     String identifiant;
-    String responseStr;
+
     String responseStrCli;
+    String responseStr;
     OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +177,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                         leProduit.setPrix_kg(row.getString("prix_kg"));
                         leProduit.setQté_produit(row.getString("qte_produit"));
                         leProduit.setType_produit(row.getString("type_produit"));
+                        leProduit.setDecription(row.getString("description"));
                         LesUsers.getUserID(row.getString("idProd")).addProduit(leProduit);
                     }
                 }else{

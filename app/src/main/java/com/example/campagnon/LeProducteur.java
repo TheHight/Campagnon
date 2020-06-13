@@ -19,9 +19,6 @@ import com.example.campagnon.Class.LesUsers;
 import com.example.campagnon.Class.Produit;
 import com.example.campagnon.Class.User;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
 import okhttp3.FormBody;

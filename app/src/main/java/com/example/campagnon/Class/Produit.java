@@ -15,11 +15,19 @@ public class Produit {
     private String nom_produit;
     private String qté_produit;
     private String prix_kg;
+    private String decription;
 
     public Produit() {
     }
 
 
+    public String getDecription() {
+        return decription;
+    }
+
+    public void setDecription(String decription) {
+        this.decription = decription;
+    }
 
     public String getType_produit() {
         return type_produit;
