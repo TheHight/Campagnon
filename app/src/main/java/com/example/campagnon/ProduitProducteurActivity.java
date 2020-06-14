@@ -84,6 +84,12 @@ public class ProduitProducteurActivity extends AppCompatActivity {
         area.add("Légume");
         type.setAdapter(new ArrayAdapter<String>(this
                 , android.R.layout.simple_list_item_1, area));
+        if(leProduit.getType_produit().toString().equals("Fruit")){
+            type.setSelection(0);
+        }else{
+            type.setSelection(1);
+        }
+
 
         //prixkilo.selec(leProduit.getPrix_kg());
 
@@ -149,6 +155,7 @@ public class ProduitProducteurActivity extends AppCompatActivity {
             try {
                 leProduit.setDecription(description.getText().toString());
                 leProduit.setImage(lien.getText().toString());
+                leProduit.setType_produit(type.getSelectedItem().toString());
                 leProduit.setNom_produit(nom.getText().toString());
                 leProduit.setQté_produit(quantite.getText().toString());
                 leProduit.setPrix_kg(prixKilo.getText().toString());

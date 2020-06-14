@@ -144,6 +144,7 @@ public class ajouterProduitProducteurActivity extends AppCompatActivity {
                 leProduit.setNom_produit(nom.getText().toString());
                 leProduit.setQté_produit(quantite.getText().toString());
                 leProduit.setPrix_kg(prixKilo.getText().toString());
+                leProduit.setType_produit(type.getSelectedItem().toString());
                 leProd.addProduit(leProduit);
                 finish();
             }catch (Exception e) {
