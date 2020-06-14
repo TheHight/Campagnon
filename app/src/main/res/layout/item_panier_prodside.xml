@@ -10,35 +10,47 @@
         android:id="@+id/textViewPrixKG_prodside"
         android:layout_width="171dp"
         android:layout_height="25dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         android:text="Montant  :"
         android:textSize="17dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView15"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQté_prodside" />
+        app:layout_constraintStart_toEndOf="@+id/imageProduitProd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewQte_prodside" />
 
     <TextView
-        android:id="@+id/textViewQté_prodside"
+        android:id="@+id/textViewQte_prodside"
         android:layout_width="171dp"
         android:layout_height="26dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
         android:text="Quantité :"
         android:textSize="17dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView15"
-        tools:layout_editor_absoluteY="74dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageProduitProd"
+        app:layout_constraintTop_toBottomOf="@+id/display_nom_produit_panier2" />
 
     <TextView
         android:id="@+id/display_nom_produit_panier2"
         android:layout_width="177dp"
         android:layout_height="22dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="8dp"
         android:text="nom_produit"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/imageView15"
-        tools:layout_editor_absoluteY="52dp" />
+        app:layout_constraintStart_toEndOf="@+id/imageProduitProd"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/imageProduitProd"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,6 @@
 package com.example.campagnon.Class;
+
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,21 +8,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.campagnon.R;
 import com.squareup.picasso.Picasso;
 
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
-public class CustomGridAdapter  extends BaseAdapter {
+public class CustomGridAdapterProducteur extends BaseAdapter {
 
     private List<Produit> listData;
     private LayoutInflater layoutInflater;
     private Context context;
 
-    public CustomGridAdapter(Context aContext,  List<Produit> listData) {
+    public CustomGridAdapterProducteur(Context aContext, List<Produit> listData) {
         this.context = aContext;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(aContext);
@@ -47,12 +44,12 @@ public class CustomGridAdapter  extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.widget_produit_ficheproducteur, null);
+            convertView = layoutInflater.inflate(R.layout.item_panier_prodside, null);
             holder = new ViewHolder();
-            holder.ProduitImageView = (ImageView) convertView.findViewById(R.id.product_picture);
-            holder.ProduitNameView = (TextView) convertView.findViewById(R.id.display_nom_produit_widget);
-            holder.ProduitQdispo = (TextView) convertView.findViewById(R.id.textViewQDispo);
-            holder.ProduitPrixKG = (TextView) convertView.findViewById(R.id.textViewPrixKG);
+            holder.ProduitImageView = (ImageView) convertView.findViewById(R.id.imageProduitProd);
+            holder.ProduitNameView = (TextView) convertView.findViewById(R.id.display_nom_produit_panier2);
+            holder.ProduitQdispo = (TextView) convertView.findViewById(R.id.textViewQte_prodside);
+            holder.ProduitPrixKG = (TextView) convertView.findViewById(R.id.textViewPrixKG_prodside);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -60,8 +57,8 @@ public class CustomGridAdapter  extends BaseAdapter {
 
         Produit produit = this.listData.get(position);
         holder.ProduitNameView.setText(produit.getNom_produit());
-        holder.ProduitPrixKG.setText("Prix/kilo : "+produit.getPrix_kg() +"€");
-        holder.ProduitQdispo.setText("Quantité dispo : "+ produit.getQté_produit()+"KG");
+        holder.ProduitPrixKG.setText(holder.ProduitPrixKG.getText() +" "+produit.getPrix_kg() +"€");
+        holder.ProduitQdispo.setText(holder.ProduitQdispo.getText() +" " +produit.getQté_produit()+"KG");
 
         int imageId = this.getMipmapResIdByName(produit.getNom_produit());
         Picasso.with(context).load(produit.getImage()).into(holder.ProduitImageView);
