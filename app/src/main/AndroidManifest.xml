@@ -54,6 +54,8 @@
         <activity android:name=".CommandesAttentesActivity"/>
         <activity android:name=".MesProduitsActivity"/>
         <activity android:name=".ProduitProducteurActivity"/>
+        <activity android:name=".ajouterProduitProducteurActivity"/>
+
 
     </application>
 

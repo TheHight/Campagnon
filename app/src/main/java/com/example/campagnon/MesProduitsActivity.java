@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.campagnon.Class.CustomGridAdapterProducteur;
@@ -39,6 +40,18 @@ public class MesProduitsActivity extends AppCompatActivity {
             }
         });
 
+        final ImageView imageAjout = (ImageView) findViewById(R.id.add_product_button);
+        {
+            imageAjout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MesProduitsActivity.this, ajouterProduitProducteurActivity.class);
+                    intent.putExtra("identifiant", leProd.getIdentifiant());
+                    startActivity(intent);
+
+                }
+            });
+        }
 
     }
 }

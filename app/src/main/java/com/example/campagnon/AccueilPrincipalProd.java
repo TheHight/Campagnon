@@ -52,6 +52,8 @@ public class AccueilPrincipalProd extends AppCompatActivity {
             }
         });
 
+
+
         final Button mesProduits = (Button) findViewById(R.id.interface_prod_1);
         mesProduits.setOnClickListener(new View.OnClickListener() {
             @Override

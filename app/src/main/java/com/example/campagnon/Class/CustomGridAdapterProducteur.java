@@ -57,8 +57,8 @@ public class CustomGridAdapterProducteur extends BaseAdapter {
 
         Produit produit = this.listData.get(position);
         holder.ProduitNameView.setText(produit.getNom_produit());
-        holder.ProduitPrixKG.setText(holder.ProduitPrixKG.getText() +" "+produit.getPrix_kg() +"€");
-        holder.ProduitQdispo.setText(holder.ProduitQdispo.getText() +" " +produit.getQté_produit()+"KG");
+        holder.ProduitPrixKG.setText("Montant : "+produit.getPrix_kg() +"€");
+        holder.ProduitQdispo.setText("Quantité : "+produit.getQté_produit()+"KG");
 
         int imageId = this.getMipmapResIdByName(produit.getNom_produit());
         Picasso.with(context).load(produit.getImage()).into(holder.ProduitImageView);
