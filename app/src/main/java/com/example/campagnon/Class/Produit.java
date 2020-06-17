@@ -9,17 +9,27 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Produit {
-
+    //ATTRIBUTS
     private String type_produit;
     private String image;
     private String nom_produit;
     private String qté_produit;
     private String prix_kg;
     private String decription;
+    private User leProd;
 
+    //CONSTRUCTEUR
     public Produit() {
     }
 
+    //GETTER SETTER
+    public User getLeProd() {
+        return leProd;
+    }
+
+    public void setLeProd(User leProd) {
+        this.leProd = leProd;
+    }
 
     public String getDecription() {
         return decription;

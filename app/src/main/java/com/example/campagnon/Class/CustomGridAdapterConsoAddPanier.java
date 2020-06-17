@@ -1,7 +1,5 @@
 package com.example.campagnon.Class;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.campagnon.R;
 import com.squareup.picasso.Picasso;
-
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 public class CustomGridAdapterConsoAddPanier extends BaseAdapter {
-
+    //ATTRIBUTS
     private List<Produit> listData;
     private LayoutInflater layoutInflater;
     private Context context;

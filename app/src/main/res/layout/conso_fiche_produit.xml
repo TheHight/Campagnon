@@ -137,4 +137,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewProduitt"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <EditText
+        android:id="@+id/editTextQ"
+        android:layout_width="85dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@+id/ajouter_au_panier2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

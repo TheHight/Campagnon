@@ -47,6 +47,7 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        //On place le point du consommateur sur la carte
         LatLng maPosition = new LatLng(Double.parseDouble(monUser.getY()), Double.parseDouble(monUser.getX()));
         mMap.addMarker(new MarkerOptions().position(maPosition).title("Ma maison"));
         Marker maMaison = mMap.addMarker(new MarkerOptions()
@@ -54,8 +55,10 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(maPosition, 10));
 
+        //On parcourt la liste des Producteurs
         for(User unUser : LesUsers.getListProducteurs()){
             mMap = googleMap;
+            //On place un point un à un pour chaque producteur
             LatLng lesPosition = new LatLng(Double.parseDouble(unUser.getY()), Double.parseDouble(unUser.getX()));
             Marker mBrisbane = mMap.addMarker(new MarkerOptions()
                     .position(lesPosition)
@@ -68,13 +71,14 @@ public class MapsActivity extends FragmentActivity implements GoogleMap.OnMarker
     }
 
     @Override
-    public boolean onMarkerClick(final Marker marker) {
+    public boolean onMarkerClick(final Marker marker) { //Lorsque l'on clique sur un marker
 
         // Retrieve the data from the marker.
         Integer clickCount = (Integer) marker.getTag();
 
         // Check if a click count was set, then display the click count.
         if (clickCount != null) {
+            //On affiche la page correspondant au producteur selectionné.
             Intent intent = new Intent(MapsActivity.this, LeProducteur.class);
             intent.putExtra("Prod", marker.getTitle());
             intent.putExtra("identifiant", monUser.getIdentifiant());

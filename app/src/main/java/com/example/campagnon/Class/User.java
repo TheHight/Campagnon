@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class User {
 
+    //ATTRIBUTS
     private String identifiant;
     private String ville;
     private String code_postal;
@@ -18,11 +19,14 @@ public class User {
     private String x;
     private String y;
 
+    //Constucteur
     public User() {
+        //Déclaration des arraylist
         mode_de_paiement = new ArrayList<String>();
         listUserProdClient = new ArrayList<User>();
         listProduit = new ArrayList<Produit>();
     }
+    //Fonction permettant de calculer distant entre deux utilisateurs
     public double Distance(User autreUser) {
         Double x1 = Double.parseDouble(this.getX());
         Double x2 = Double.parseDouble(autreUser.getX());
@@ -45,6 +49,7 @@ public class User {
         return d;
     }
 
+    //GETTER AND SETTER
     public String getX() {
         return x;
     }
