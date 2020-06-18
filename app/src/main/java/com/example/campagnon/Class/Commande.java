@@ -4,10 +4,11 @@ package com.example.campagnon.Class;
 public class Commande {
     //ATTRIBUTS
     private User leConso;
+    private User leProd;
     private Produit leProduit;
     private String quantite;
     private String etat;
-
+    private String date;
     //Constructeur
     public Commande() {
     }
@@ -39,6 +40,22 @@ public class Commande {
 
     public String getEtat() {
         return etat;
+    }
+
+    public User getLeProd() {
+        return leProd;
+    }
+
+    public void setLeProd(User leProd) {
+        this.leProd = leProd;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public void setEtat(String etat) {

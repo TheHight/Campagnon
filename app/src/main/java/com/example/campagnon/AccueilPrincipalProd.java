@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.campagnon.Class.Commande;
+import com.example.campagnon.Class.LesCommandes;
 import com.example.campagnon.Class.LesUsers;
 import com.example.campagnon.Class.Produit;
 import com.example.campagnon.Class.User;
@@ -152,8 +154,62 @@ public class AccueilPrincipalProd extends AppCompatActivity {
                         }
 
                     }
+                    new BackTaskRecupererLesCommandes().execute();
                 }else{
                 }
+            } catch (Exception e) {
+                Toast.makeText(AccueilPrincipalProd.this, e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
+    //VOIR ACCUEUILPRINCIPALPROD
+    private class BackTaskRecupererLesCommandes extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+            LesCommandes.clearListe();
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+
+                RequestBody formBody = new FormBody.Builder()
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/recupererCommande.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+            }
+            catch (Exception e) {
+                Log.d("Test", e.getMessage());
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+
+            try {
+                JSONArray array = new JSONArray(responseStr);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject row = array.getJSONObject(i);
+                    if (identifiant.equals(row.getString("idProd"))) {
+                        Commande laCommande = new Commande();
+                        User leProd = LesUsers.getUserID(row.getString("idProd"));
+                        laCommande.setLeProduit(leProd.chercherProduit(row.getString("idProduit")));
+                        laCommande.setLeProd(leProd);
+                        laCommande.setLeConso(LesUsers.getUserID(row.getString("idConso")));
+                        laCommande.setEtat(row.getString("etat"));
+                        laCommande.setQuantite(row.getString("quantite"));
+                        laCommande.setDate(row.getString("date"));
+                        LesCommandes.ajouterCommande(laCommande);
+                    }
+
+                }
+
             } catch (Exception e) {
                 Toast.makeText(AccueilPrincipalProd.this, e.getMessage().toString(),Toast.LENGTH_SHORT).show();
             }

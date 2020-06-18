@@ -45,6 +45,23 @@ public class LesCommandes {
         return listCommandeR;
     }
 
+    public static ArrayList<Produit> getListProduitCommande() {
+        ArrayList<Commande> listCommandeEC = getListCommande();
+        ArrayList<Produit> listProduit = new ArrayList<Produit>();
+        for(Commande uneCommande : listCommandeEC){
+            listProduit.add(uneCommande.getLeProduit());
+        }
+        return listProduit;
+    }
+
+    public static ArrayList<Produit> getListProduitCommandeEC(User monUser) {
+        ArrayList<Commande> listCommandeEC = getListCommandeEnCours(monUser);
+        ArrayList<Produit> listProduit = new ArrayList<Produit>();
+        for(Commande uneCommande : listCommandeEC){
+            listProduit.add(uneCommande.getLeProduit());
+        }
+        return listProduit;
+    }
 
 
     public static void clearListe(){
