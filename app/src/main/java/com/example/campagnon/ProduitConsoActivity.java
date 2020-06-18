@@ -32,6 +32,7 @@ public class ProduitConsoActivity extends AppCompatActivity {
     String responseStr;
     OkHttpClient client = new OkHttpClient();
     EditText quantite;
+    Commande uneCommande;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,9 @@ public class ProduitConsoActivity extends AppCompatActivity {
         monClient = LesUsers.getUserID(getIntent().getExtras().getString("identifiant"));
         leProd = LesUsers.getUserID(getIntent().getExtras().getString("idProducteur"));
         leProduit = leProd.chercherProduit(getIntent().getExtras().getString("leProduit"));
-
+        uneCommande = LesCommandes.getCommande(monClient,leProd,leProduit);
+        quantite = (EditText) findViewById(R.id.editTextQ) ;
+        quantite.setText(uneCommande.getQuantite());
         ImageView monImage = (ImageView) findViewById(R.id.display_image_produit1);
         Picasso.with(this).load(leProduit.getImage()).into(monImage);
         TextView nom = (TextView) findViewById(R.id.textViewProduitt);
@@ -61,7 +64,13 @@ public class ProduitConsoActivity extends AppCompatActivity {
         imagePanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new BackTaskAjouterLigneCommande().execute();
+
+                if(uneCommande.getEtat().equals("")){
+                    new BackTaskAjouterLigneCommande().execute();
+                }else{
+                    new BackTaskModifierLigneCommande().execute();
+                }
+
             }
         });
     }
@@ -99,7 +108,6 @@ public class ProduitConsoActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             try{
-                Commande uneCommande = new Commande();
                 uneCommande.setQuantite(quantite.getText().toString());
                 uneCommande.setEtat("EC");
                 uneCommande.setLeProd(leProd);
@@ -108,10 +116,52 @@ public class ProduitConsoActivity extends AppCompatActivity {
                 LesCommandes.ajouterCommande(uneCommande);
                 finish();
             }catch (Exception E){
-                Log.d("Erreur", "onPostExecute: "+E.getMessage());
+                Toast.makeText(ProduitConsoActivity.this, E.getMessage(),
+                        Toast.LENGTH_SHORT).show();
             }
 
         }
     }
 
+    private class BackTaskModifierLigneCommande extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+
+                RequestBody formBody = new FormBody.Builder()
+                        .add("idConso", monClient.getIdentifiant())
+                        .add("idProd", leProd.getIdentifiant())
+                        .add("idProduit", leProduit.getNom_produit())
+                        .add("quantite", quantite.getText().toString())
+
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/modifierCommande.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
+            }
+            catch (Exception e) {
+                Log.d("Test", "Erreur de connexion Supp !!!!");
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            try{
+                uneCommande.setQuantite(quantite.getText().toString());
+                finish();
+            }catch (Exception E){
+                Log.d("Erreur", "onPostExecute: "+E.getMessage());
+            }
+
+        }
+    }
 }

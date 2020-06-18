@@ -11,6 +11,7 @@ public class Commande {
     private String date;
     //Constructeur
     public Commande() {
+        etat ="";
     }
 
     //GETTER SETTTER

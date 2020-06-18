@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,24 +24,6 @@ public class CommandesAttentesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.page_commandes_en_attentes_prodside);
-        leClient = LesUsers.getUserID(getIntent().getExtras().getString("identifiant"));
-        List<Produit> image_details = LesCommandes.getListProduitCommandeEC(leClient);
 
-        final GridView gridView = (GridView) findViewById(R.id.gridviewProduitCommande);
-        gridView.setAdapter(new CustomGridAdapterProducteur(this, image_details));
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> a, View v, int position, long id) {
-                Object o = gridView.getItemAtPosition(position);
-                Produit produit = (Produit) o;
-                Intent intent = new Intent(CommandesAttentesActivity.this, ProduitConsoActivity.class);
-                intent.putExtra("identifiant", leClient.getIdentifiant());
-                intent.putExtra("leProduit", ((Produit) o).getNom_produit());
-                intent.putExtra("idProducteur", ((Produit) o).getLeProd().getIdentifiant());
-                startActivity(intent);
-            }
-        });
     }
 }

@@ -45,14 +45,16 @@ public class LesCommandes {
         return listCommandeR;
     }
 
-    public static ArrayList<Produit> getListProduitCommande() {
-        ArrayList<Commande> listCommandeEC = getListCommande();
-        ArrayList<Produit> listProduit = new ArrayList<Produit>();
-        for(Commande uneCommande : listCommandeEC){
-            listProduit.add(uneCommande.getLeProduit());
+    public static Commande getCommande(User monUser,User monProd,Produit leProduit) {
+        Commande commande = new Commande();
+        for(Commande uneCommande : listCommande){
+            if(uneCommande.getEtat().equals("EC") && uneCommande.getLeConso().equals(monUser)&& uneCommande.getLeProduit().getLeProd().equals(monProd) && uneCommande.getLeProduit().equals(leProduit)){
+                commande = uneCommande;
+            }
         }
-        return listProduit;
+        return commande;
     }
+
 
     public static ArrayList<Produit> getListProduitCommandeEC(User monUser) {
         ArrayList<Commande> listCommandeEC = getListCommandeEnCours(monUser);

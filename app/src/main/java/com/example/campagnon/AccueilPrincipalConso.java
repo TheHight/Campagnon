@@ -245,6 +245,7 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                         .post(formBody)
                         .build();
                 Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
             }
             catch (Exception e) {
                 Log.d("Test", e.getMessage());
@@ -255,10 +256,12 @@ public class AccueilPrincipalConso extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
-                JSONArray array = new JSONArray(responseStr);
-                for (int i = 0; i < array.length(); i++) {
-                    JSONObject row = array.getJSONObject(i);
-                    if (identifiant.equals(row.getString("idProd"))) {
+                if(!responseStr.equals("false")) {
+
+
+                    JSONArray array = new JSONArray(responseStr);
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject row = array.getJSONObject(i);
                         Commande laCommande = new Commande();
                         User leProd = LesUsers.getUserID(row.getString("idProd"));
                         laCommande.setLeProduit(leProd.chercherProduit(row.getString("idProduit")));
@@ -266,10 +269,11 @@ public class AccueilPrincipalConso extends AppCompatActivity {
                         laCommande.setLeConso(LesUsers.getUserID(row.getString("idConso")));
                         laCommande.setEtat(row.getString("etat"));
                         laCommande.setQuantite(row.getString("quantite"));
-                        //laCommande.setDate(row.getString("date"));
+                        laCommande.setDate(row.getString("date"));
                         LesCommandes.ajouterCommande(laCommande);
-                    }
 
+
+                    }
                 }
 
             } catch (Exception e) {
