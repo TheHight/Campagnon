@@ -1,9 +1,12 @@
 package com.example.campagnon;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -17,8 +20,16 @@ import com.example.campagnon.Class.User;
 
 import java.util.List;
 
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+
 public class Panier extends AppCompatActivity {
     User leClient;
+    String responseStr;
+    OkHttpClient client = new OkHttpClient();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,5 +53,54 @@ public class Panier extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button monButton = (Button) findViewById(R.id.button);
+        monButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new BackTaskModifierLigneCommande().execute();
+
+            }
+        });
+    }
+
+    private class BackTaskModifierLigneCommande extends AsyncTask<Void, Void, Void> {
+
+
+        @Override
+        protected void onPreExecute() {
+
+        }
+        @Override
+        protected Void doInBackground(Void... params){
+            try {
+
+                RequestBody formBody = new FormBody.Builder()
+                        .add("idConso", leClient.getIdentifiant())
+
+                        .build();
+                Request request = new Request.Builder()
+                        .url("http://campagnon.tk/validerCommande.php")
+                        .post(formBody)
+                        .build();
+                Response response = client.newCall(request).execute();
+                responseStr = response.body().string();
+            }
+            catch (Exception e) {
+                Log.d("Test", "Erreur de connexion Supp !!!!");
+            }
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result) {
+            try{
+                Toast.makeText(Panier.this, "Le panier a été validé ",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }catch (Exception E){
+                Log.d("Erreur", "onPostExecute: "+E.getMessage());
+            }
+
+        }
     }
 }

@@ -32,6 +32,7 @@ public class AccueilPrincipalProd extends AppCompatActivity {
     //Attributs disponible partout
     User leProd;
     String responseStr;
+    String responseStrBIS;
     String identifiant;
     OkHttpClient client = new OkHttpClient();
     @Override
@@ -103,7 +104,7 @@ public class AccueilPrincipalProd extends AppCompatActivity {
     }
 
 
-    //VOIR ACCUEUILPRINCIPALPROD
+    //VOIR ACCUEUIL PRINCIPALPROD
     private class BackTaskRecupererLesProduit extends AsyncTask<Void, Void, Void> {
 
 
@@ -183,6 +184,7 @@ public class AccueilPrincipalProd extends AppCompatActivity {
                         .post(formBody)
                         .build();
                 Response response = client.newCall(request).execute();
+                responseStrBIS = response.body().string();
             }
             catch (Exception e) {
                 Log.d("Test", e.getMessage());
@@ -193,12 +195,13 @@ public class AccueilPrincipalProd extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             try {
-                JSONArray array = new JSONArray(responseStr);
+                JSONArray array = new JSONArray(responseStrBIS);
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject row = array.getJSONObject(i);
                     if (identifiant.equals(row.getString("idProd"))) {
                         Commande laCommande = new Commande();
                         User leProd = LesUsers.getUserID(row.getString("idProd"));
+                        Log.d("TESTTEST",row.toString());
                         laCommande.setLeProduit(leProd.chercherProduit(row.getString("idProduit")));
                         laCommande.setLeProd(leProd);
                         laCommande.setLeConso(LesUsers.getUserID(row.getString("idConso")));
@@ -211,7 +214,7 @@ public class AccueilPrincipalProd extends AppCompatActivity {
                 }
 
             } catch (Exception e) {
-                Toast.makeText(AccueilPrincipalProd.this, e.getMessage().toString(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(AccueilPrincipalProd.this, e.getMessage().toString()+"-----------",Toast.LENGTH_SHORT).show();
             }
         }
 

@@ -65,6 +65,15 @@ public class LesCommandes {
         return listProduit;
     }
 
+    public static ArrayList<Produit> getListProduitCommandeV(User monUser) {
+        ArrayList<Commande> listCommandeV = getListCommandeValide(monUser);
+        ArrayList<Produit> listProduit = new ArrayList<Produit>();
+        for(Commande uneCommande : listCommandeV){
+            listProduit.add(uneCommande.getLeProduit());
+        }
+        return listProduit;
+    }
+
 
     public static void clearListe(){
         listCommande.clear();
